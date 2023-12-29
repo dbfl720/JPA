@@ -53,4 +53,13 @@ public class MemberService {
     }
 
 
+
+    // 커멘드와 쿼리를 철저하게 분리한다. update하면서 member를 쿼리해버린다.(만약 void대신에 member가 들어갈 경우)
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
+
+
+    }
 }

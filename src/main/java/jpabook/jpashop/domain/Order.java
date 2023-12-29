@@ -34,7 +34,7 @@ public class Order {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = LAZY) // order를 저장할 때, delivery entity도 모두 저장해줌**
     @JoinColumn(name = "delivery_id")
-    private Delievery delivery; //배송정보
+    private Delivery delivery; //배송정보
 
     private LocalDateTime orderDate; //주문시간
 
@@ -52,13 +52,13 @@ public class Order {
         orderItem.setOrder(this);
     }
 
-    public void setDelivery(Delievery delivery) {
+    public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
 
     //==생성 메서드==//
-    public static Order createOrder(Member member, Delievery delivery, OrderItem... orderItems) {
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
         Order order = new Order();
         order.setMember(member);
         order.setDelivery(delivery);

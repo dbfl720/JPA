@@ -10,7 +10,7 @@ import static javax.persistence.FetchType.*;
 @Entity
 @Getter
 @Setter
-public class Delievery {
+public class Delivery {
     @Id @GeneratedValue
     @Column( name = "delivery_id")
     private Long id;
