@@ -13,6 +13,8 @@ spring:
       hibernate:
 #        show_sql: true    system.out으로 보이는 것
         format_sql: true
+        default_batch_fetch_size: 1000
+        # 100~ 1000 사이 가능 // 1000으로 하는게 성능상 가장 좋다.
 
 
 logging:
