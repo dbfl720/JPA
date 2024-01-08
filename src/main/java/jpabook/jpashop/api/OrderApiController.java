@@ -20,6 +20,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+// ** 결론 : v4,v5,v6은 dto 조회방식이라서 나머지 엔티티 조회 방식으로 대부분 해결하자 !
 @RestController
 @RequiredArgsConstructor
 public class OrderApiController {
@@ -57,6 +58,7 @@ public class OrderApiController {
     }
 
 
+    // 권장 방식 1
     // 중복 데이터가 많다는 단점
     @GetMapping("/api/v3/orders")
     public List<OrderDto> ordersV3() {
@@ -68,6 +70,8 @@ public class OrderApiController {
         return result;
     }
 
+
+    // 권장 방식 2
     // 중복 데이터 안나옴 , 페이징 가능 ! , 김영환님이 매우 선호화는 방법***, 1 + n -> 1+1로 최적화됨 !! , 조인보다 db 데이터 전송량이 최적화 된다.
     // ** 결론 : ToOne 관계는 패치 조인해도 페이징에 영향을 주지 않기 때문에, 페치조인으로 해결하고, 나머지는 hibernate.default_batch_fetch_size로 최적화 하자
     @GetMapping("/api/v3.1/orders")
@@ -96,6 +100,7 @@ public class OrderApiController {
     }
 
 
+    // 권장 방식 3
     @GetMapping("/api/v6/orders")
     public List<OrderFlatDto> ordersV6(){
         return orderQueryRepository.findAllByDto_flat();
